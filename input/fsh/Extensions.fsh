@@ -144,7 +144,7 @@ Description: "Topography of the primary cancer"
 
 * value[x] 0..1
 * value[x] only CodeableConcept
-* valueCodeableConcept from CancerICD3TopographyVS (required)
+* valueCodeableConcept from ICDO3TopographyVS (required)
 
 
 Extension: CancerMorphology
@@ -159,7 +159,7 @@ Description: "Morphology of the primary cancer according to ICD-O-3"
 
 * value[x] 0..1
 * value[x] only CodeableConcept
-* valueCodeableConcept from CancerICD3MorphologyVS (required)
+* valueCodeableConcept from ICDO3MorphologyVS (required)
 
 
 Extension: CancerGradeDifferentiation

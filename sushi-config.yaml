@@ -60,6 +60,7 @@ dependencies:
 #
 parameters:
   special-url-base: https://terminology.dhp.uz/fhir/integrations
+  special-url: http://terminology.hl7.org/CodeSystem/icd-o-3
   excludettl: true
   # shownav: true
 

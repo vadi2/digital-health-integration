@@ -43,12 +43,12 @@ Example: [cancer-condition-primary-example](Condition-cancer-condition-primary-e
 | :--- | :--- | :--- | :--- |
 | Tashxis | ICD10VS | `ICD-10#C02` | `Condition.code` |
 | Laterallik | [CancerLaterlityQualifierCS](CodeSystem-cancer-laterlity-qualifier-cs.html) | `cancer-laterlity-qualifier-cs#cancer-0004-0002` (Chap tomonda / Слева / Left) | `extension[lateralityQualifier]` |
-| Topografiya (ICD-O-3) | [CancerICD3TopographyCS](CodeSystem-cancer-icd3-topography-cs.html) | `cancer-icd3-topography-cs#C020` (tilning yuqori yuzasi QA / языка верхняя поверхность БДУ) | `extension[topography]` |
-| Morfologiya (ICD-O-3) | [CancerICD3morphologyCS](CodeSystem-cancer-icd3-morphology-cs.html) | `cancer-icd3-morphology-cs#8000` (Xavfli o‘smalar QA / Новообразование злокачественное БДУ) | `extension[morphology]` |
+| Topografiya (ICD-O-3) | [ICD-O-3](CodeSystem-icd-o-3.html) | `icd-o-3#C02.0` (Dorsal surface of tongue, NOS / tilning yuqori yuzasi QA) | `extension[topography]` |
+| Morfologiya (ICD-O-3) | [ICD-O-3](CodeSystem-icd-o-3.html) | `icd-o-3#8000/3` (Neoplasm, malignant / Xavfli o‘smalar QA) | `extension[morphology]` |
 | Differensiallashish darajasi | [CancerDegreeDifferentiationCS](CodeSystem-cancer-degree-differentiation-cs.html) | `cancer-degree-differentiation-cs#cancer-0020-0002` (G2, o‘rtacha differensiallashgan) | `extension[gradeDifferentiation]` |
 | O‘sma biologik xususiyati | [CancerTumorBehaviorCS](CodeSystem-cancer-tumor-behavior-cs.html) | `cancer-tumor-behavior-cs#cancer-0019-0004` (Yomon sifatli / Malignant) | `extension[tumorBehavior]` |
 | Aniqlanish holati | [CancerDetectionCircumstanceCS](CodeSystem-cancer-detection-circumstance-cs.html) | `cancer-detection-circumstance-cs#cancer-0005-0002` (Onkonazorat kabinetida aniqlangan) | `extension[detectionCircumstance]` |
-| ICCC-3 guruhi | `$iccc-3-cs` | `iccc-3-cs#III` | `extension[cancer-iccc-3-group]` |
+| ICCC-3 guruhi | [ICCC3CS](https://terminology.dhp.uz/fhir/core/CodeSystem/iccc-3-cs) | `iccc-3-cs#III` | `extension[cancer-iccc-3-group]` |
 | Tasdiqlash usuli | [CancerConfirmationMethodCS](CodeSystem-cancer-confirmation-method-cs.html) | `cancer-confirmation-method-cs#cancer-0002-0003` (Gistologiya / Histology) | `extension[confirmationMethod]` |
 | Klinik holat | [condition-clinical](https://dhp.uz/fhir/core/CodeSystem-clinical-status-cs.html) | `condition-clinical#active` | `clinicalStatus` |
 | Verifikatsiya holati | [condition-ver-status](https://dhp.uz/fhir/core/CodeSystem-condition-verification-status-cs.html) | `condition-ver-status#confirmed` | `verificationStatus` |
@@ -61,11 +61,11 @@ Example: [cancer-condition-primary-example](Condition-cancer-condition-primary-e
 | Subyekt / encounter | - | [Patient](#bemorni-ro‘yxatga-olish-patient) / [CancerEncounter](#tashrifni-hujjatlashtirish-cancerencounter) ga reference | `subject` / `encounter` |
 | Mas’ul klinitsist | - | [PractitionerRole](#qo‘llab-quvvatlovchi-resurslar) ga reference | `participant.actor` |
 
-Topografiya, morfologiya, laterallik, aniqlanish holati, tasdiqlash usuli, differensiallashish darajasi yoki o‘sma xususiyati kodlarining hech birida 1:1 tashqi terminologik ekvivalent mavjud emas. Shu sababli ularning har biri Cancer’dan olingan mahalliy kodni (`cancer-000X-YYYY`) saqlaydi; faqat asosiy tashxis (ICD-10) va tana sohasi (SNOMED CT) standart kodlardan foydalanadi.
+Topografiya va morfologiya bevosita ICD-O-3 bo‘yicha kodlanadi: [ICD-O-3](CodeSystem-icd-o-3.html) kod tizimi (ICD-O-3.2, o‘zbek va rus tilidagi belgilashlar bilan) qo‘llanma bilan birga yetkazib beriladi, morfologiya kodi esa reestrning to‘rt xonali gistologiya kodini xususiyat raqami bilan birlashtiradi (`8140/3`). Laterallik, aniqlanish holati, tasdiqlash usuli, differensiallashish darajasi yoki o‘sma xususiyati kodlarining hech birida 1:1 tashqi terminologik ekvivalent mavjud emas. Shu sababli ularning har biri Cancer’dan olingan mahalliy kodni (`cancer-000X-YYYY`) saqlaydi; asosiy tashxis (ICD-10) va tana sohasi (SNOMED CT) standart kodlardan foydalanadi.
 
 Ro‘yxatga olish darajasidagi holatni aniqlash usuli (`CancerIdCS` #505–#513) va chiqarilish holatiga o‘xshash hayotiy holat (#29–#33) kodlari [cancer-id-status-to-dhp-status-cm](ConceptMap-cancer-id-status-to-dhp-status-cm.html) ConceptMap orqali tegishli DHP tashxis turi va discharge disposition code systemlariga hamda Cancer-specific `CancerDiagnosisTypeCS` / `CancerEncounterDischargeDispositionCS` code systemlariga moslashtiriladi.
 
-Manba tizimining raqamli `CancerIdICD3TopographyCS` topografiya kodlari [cancer-id-icd3-topography-to-cancer-icd3-topography-cm](ConceptMap-cancer-id-icd3-topography-to-cancer-icd3-topography-cm.html) ConceptMap orqali `CancerICD3TopographyCS` alfanumerik (`Cxxx`) kodlariga 1:1 moslashtiriladi. Shu sababli integrator ikkala kod to‘plamidan biriga ega bo‘lsa, ikkinchi kodga o‘tishi mumkin.
+Manba tizimining raqamli `CancerIdICD3TopographyCS` topografiya kodlari [cancer-id-icd3-topography-to-cancer-icd3-topography-cm](ConceptMap-cancer-id-icd3-topography-to-cancer-icd3-topography-cm.html) ConceptMap orqali ICD-O-3 topografiya kodlariga (`C02.0`) 1:1 moslashtiriladi. Shu sababli integrator ikkala kod to‘plamidan biriga ega bo‘lsa, ikkinchi kodga o‘tishi mumkin.
 
 ### Metastatik yoki retsidiv kasallikni qayd etish (CancerConditionSecondary)
 

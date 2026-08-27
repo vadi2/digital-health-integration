@@ -35,6 +35,7 @@ Alias: $healthcard = https://gov.uz/ssv/identifier/healthcard
 Alias: $http-interaction = http://hl7.org/fhir/restful-interaction
 Alias: $icd-10 = http://hl7.org/fhir/sid/icd-10
 Alias: $icd-10-vs = http://hl7.org/fhir/ValueSet/icd-10
+Alias: $icd-o-3 = http://terminology.hl7.org/CodeSystem/icd-o-3
 Alias: $identifier-type = http://terminology.hl7.org/CodeSystem/v2-0203
 Alias: $identifier-use = http://hl7.org/fhir/identifier-use
 Alias: $iiv = https://gov.uz/ru/iiv

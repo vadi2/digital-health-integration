@@ -43,12 +43,12 @@ Example: [cancer-condition-primary-example](Condition-cancer-condition-primary-e
 | :--- | :--- | :--- | :--- |
 | Диагноз | ICD10VS | `ICD-10#C02` | `Condition.code` |
 | Латеральность | [CancerLaterlityQualifierCS](CodeSystem-cancer-laterlity-qualifier-cs.html) | `cancer-laterlity-qualifier-cs#cancer-0004-0002` (Слева / Chap tomonda / Left) | `extension[lateralityQualifier]` |
-| Топография (ICD-O-3) | [CancerICD3TopographyCS](CodeSystem-cancer-icd3-topography-cs.html) | `cancer-icd3-topography-cs#C020` (языка верхняя поверхность БДУ / tilning yuqori yuzasi QA) | `extension[topography]` |
-| Морфология (ICD-O-3) | [CancerICD3morphologyCS](CodeSystem-cancer-icd3-morphology-cs.html) | `cancer-icd3-morphology-cs#8000` (Новообразование злокачественное БДУ / Xavfli o‘smalar QA) | `extension[morphology]` |
+| Топография (ICD-O-3) | [ICD-O-3](CodeSystem-icd-o-3.html) | `icd-o-3#C02.0` (Dorsal surface of tongue, NOS / языка верхняя поверхность БДУ) | `extension[topography]` |
+| Морфология (ICD-O-3) | [ICD-O-3](CodeSystem-icd-o-3.html) | `icd-o-3#8000/3` (Neoplasm, malignant / Новообразование злокачественное БДУ) | `extension[morphology]` |
 | Степень дифференцировки | [CancerDegreeDifferentiationCS](CodeSystem-cancer-degree-differentiation-cs.html) | `cancer-degree-differentiation-cs#cancer-0020-0002` (G2, умеренно дифференцированная) | `extension[gradeDifferentiation]` |
 | Биологическое поведение опухоли | [CancerTumorBehaviorCS](CodeSystem-cancer-tumor-behavior-cs.html) | `cancer-tumor-behavior-cs#cancer-0019-0004` (Злокачественная / Yomon sifatli / Malignant) | `extension[tumorBehavior]` |
 | Обстоятельства выявления | [CancerDetectionCircumstanceCS](CodeSystem-cancer-detection-circumstance-cs.html) | `cancer-detection-circumstance-cs#cancer-0005-0002` (Выявлено в кабинете онкоконтроля) | `extension[detectionCircumstance]` |
-| Группа ICCC-3 | `$iccc-3-cs` | `iccc-3-cs#III` | `extension[cancer-iccc-3-group]` |
+| Группа ICCC-3 | [ICCC3CS](https://terminology.dhp.uz/fhir/core/CodeSystem/iccc-3-cs) | `iccc-3-cs#III` | `extension[cancer-iccc-3-group]` |
 | Метод подтверждения | [CancerConfirmationMethodCS](CodeSystem-cancer-confirmation-method-cs.html) | `cancer-confirmation-method-cs#cancer-0002-0003` (Гистология / Histology) | `extension[confirmationMethod]` |
 | Клинический статус | [condition-clinical](https://dhp.uz/fhir/core/CodeSystem-clinical-status-cs.html) | `condition-clinical#active` | `clinicalStatus` |
 | Статус верификации | [condition-ver-status](https://dhp.uz/fhir/core/CodeSystem-condition-verification-status-cs.html) | `condition-ver-status#confirmed` | `verificationStatus` |
@@ -61,11 +61,11 @@ Example: [cancer-condition-primary-example](Condition-cancer-condition-primary-e
 | Субъект / encounter | - | ссылки на [Patient](#регистрация-пациента-patient) / [CancerEncounter](#документирование-визита-cancerencounter) | `subject` / `encounter` |
 | Ответственный клиницист | - | ссылка на [PractitionerRole](#поддерживающие-ресурсы) | `participant.actor` |
 
-Ни один из кодов топографии, морфологии, латеральности, обстоятельств выявления, метода подтверждения, степени дифференцировки или биологического поведения опухоли не имеет точного эквивалента 1:1 во внешней терминологии. Поэтому каждый из них сохраняет локальный Cancer-код (`cancer-000X-YYYY`); только основной диагноз (ICD-10) и анатомическая область (SNOMED CT) используют стандартные коды.
+Топография и морфология кодируются непосредственно по ICD-O-3: система кодов [ICD-O-3](CodeSystem-icd-o-3.html) (ICD-O-3.2 с обозначениями на узбекском и русском языках) поставляется вместе с руководством, а код морфологии объединяет четырёхзначный код гистологии реестра с цифрой биологического поведения (`8140/3`). Ни один из кодов латеральности, обстоятельств выявления, метода подтверждения, степени дифференцировки или биологического поведения опухоли не имеет точного эквивалента 1:1 во внешней терминологии. Поэтому каждый из них сохраняет локальный Cancer-код (`cancer-000X-YYYY`); основной диагноз (ICD-10) и анатомическая область (SNOMED CT) используют стандартные коды.
 
 Регистрационные поля, такие как метод выявления случая (`CancerIdCS` коды #505–#513) и статус, аналогичный статусу при выписке (#29–#33), сопоставляются посредством ConceptMap [cancer-id-status-to-dhp-status-cm](ConceptMap-cancer-id-status-to-dhp-status-cm.html) с соответствующими системами кодов типа диагноза DHP и discharge disposition, а также с Cancer-specific `CancerDiagnosisTypeCS` / `CancerEncounterDischargeDispositionCS` code systems.
 
-Коды топографии из исходной системы — числовой `CancerIdICD3TopographyCS` — сопоставляются 1:1 с алфавитно-цифровыми кодами (`Cxxx`) `CancerICD3TopographyCS` посредством ConceptMap [cancer-id-icd3-topography-to-cancer-icd3-topography-cm](ConceptMap-cancer-id-icd3-topography-to-cancer-icd3-topography-cm.html). Поэтому интегратор, располагающий любым из этих наборов кодов, может определить соответствующий код из другого набора.
+Коды топографии из исходной системы — числовой `CancerIdICD3TopographyCS` — сопоставляются 1:1 с кодами топографии ICD-O-3 (`C02.0`) посредством ConceptMap [cancer-id-icd3-topography-to-cancer-icd3-topography-cm](ConceptMap-cancer-id-icd3-topography-to-cancer-icd3-topography-cm.html). Поэтому интегратор, располагающий любым из этих наборов кодов, может определить соответствующий код из другого набора.
 
 ### Регистрация метастатического или рецидивирующего заболевания (CancerConditionSecondary)
 

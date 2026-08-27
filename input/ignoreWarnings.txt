@@ -46,3 +46,5 @@ Unable to check if https://terminology.dhp.uz/fhir/integrations/ValueSet/screeni
 Unable to expand included value set 'http://hl7.org/fhir/ValueSet/body-site': The value set 'http://hl7.org/fhir/ValueSet/body-site|5.0.0' expansion has too many codes to produce (>1000)%
 
 Unable to check if https://terminology.dhp.uz/fhir/integrations/ValueSet/cancer-encounter-class-vs is a proper subset of https://terminology.dhp.uz/fhir/core/ValueSet/encounter-class-vs|0.8.0 - value set is too large to check
+# ICD-O-3 is WHO/IARC content shipped under the HTA-endorsed terminology.hl7.org canonical; the source tables carry no per-concept definitions
+%HL7 Defined CodeSystems should ensure that every concept has a definition%

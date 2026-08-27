@@ -44,8 +44,8 @@ Usage: #example
 
 * extension[diagnosisType].valueCodeableConcept = $diagnosis-type-cs#cancer-0003-0003
 * extension[lateralityQualifier].valueCodeableConcept = cancer-laterlity-qualifier-cs#cancer-0004-0002 
-* extension[topography].valueCodeableConcept = cancer-icd3-topography-cs#C020
-* extension[morphology].valueCodeableConcept = cancer-icd3-morphology-cs#8000
+* extension[topography].valueCodeableConcept = $icd-o-3#C02.0
+* extension[morphology].valueCodeableConcept = $icd-o-3#8000/3
 * extension[gradeDifferentiation].valueCodeableConcept = cancer-degree-differentiation-cs#cancer-0020-0002
 * extension[tumorBehavior].valueCodeableConcept = cancer-tumor-behavior-cs#cancer-0019-0004
 * extension[detectionCircumstance].valueCodeableConcept = cancer-detection-circumstance-cs#cancer-0005-0002
